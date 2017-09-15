@@ -1,0 +1,8 @@
+<template>
+    <require from="resources/elements/pat-range"></require>
+    <h1>Test</h1>
+
+    <div repeat.for="num of dummyArr">
+        <pat-range min.bind="0" max.bind="99" step.bind="1" value.bind="num" style="float:left;" />
+    </div>
+</template>
