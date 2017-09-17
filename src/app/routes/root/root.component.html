@@ -1,0 +1,18 @@
+<!-- <button md-raised-button routerLink="/">Home</button>
+<button md-raised-button routerLink="/test">Test</button>
+<br/> -->
+<button md-icon-button [mdMenuTriggerFor]="menu">
+  <md-icon>more_vert</md-icon>
+</button>
+<md-menu #menu="mdMenu">
+  <button md-menu-item routerLink="/">
+    <md-icon>navigate_next</md-icon>
+    <span>Dashboard</span>
+  </button>
+  <button md-menu-item routerLink="/test">
+    <md-icon>navigate_next</md-icon>
+    <span>Simulation</span>
+  </button>
+</md-menu>
+<br/>
+<router-outlet></router-outlet>

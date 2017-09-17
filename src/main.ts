@@ -1,18 +1,14 @@
-import {Aurelia} from 'aurelia-framework'
-import environment from './environment';
+import { enableProdMode } from '@angular/core';
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
-export function configure(aurelia: Aurelia) {
-  aurelia.use
-    .standardConfiguration()
-    .feature('resources');
+import { AppModule } from './app/app.module';
+import { environment } from './environments/environment';
 
-  if (environment.debug) {
-    aurelia.use.developmentLogging();
-  }
+import 'hammerjs';
 
-  if (environment.testing) {
-    aurelia.use.plugin('aurelia-testing');
-  }
-
-  aurelia.start().then(() => aurelia.setRoot());
+if (environment.production) {
+  enableProdMode();
 }
+
+platformBrowserDynamic().bootstrapModule(AppModule)
+  .catch(err => console.log(err));
