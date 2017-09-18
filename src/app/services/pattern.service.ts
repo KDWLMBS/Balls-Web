@@ -6,7 +6,7 @@ export class Pattern {
 
   constructor() {
     this.elements = new Array<PatternElement>();
-    for(let i = 0; i < 20; i++){
+    for(let i = 0; i < 10; i++){
       let ele: PatternElement = { index: i, value: Math.floor((Math.random()*99)+1) }
       this.elements.push(ele);
     }
@@ -31,10 +31,14 @@ export class PatternService {
     this._simPattern = pattern;
   }
 
+  private _cachedPattern: Pattern;
+
   async getPatterns(): Promise<Array<Pattern>> {
+    if(!this._cachedPattern) this._cachedPattern = new Pattern();
+
     let patterns = new Array<Pattern>();
-    for(let i = 0; i < 20; i++){
-      patterns.push(new Pattern());
+    for(let i = 0; i < 15; i++){
+      patterns.push(this._cachedPattern);
     }
     return patterns;
   }

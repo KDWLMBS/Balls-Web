@@ -1,0 +1,5 @@
+<md-tab-group>
+  <md-tab label="Tab 1" *ngFor="let frame of frames">
+    <app-pattern [editable]="editable" [elements]="frame.pattern.elements" (elementsUpdated)="handleElementsUpdated($event)"></app-pattern>
+  </md-tab>
+</md-tab-group>

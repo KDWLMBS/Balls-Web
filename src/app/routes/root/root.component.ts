@@ -9,7 +9,7 @@ import { ErrorSnackbarComponent } from "../../components/snackbars/error-snackba
 @Component({
   selector: 'app-root',
   templateUrl: './root.component.html',
-  styleUrls: ['./root.component.css']
+  styleUrls: ['./root.component.scss']
 })
 export class RootComponent implements OnInit {
   snackBar: MdSnackBar;
@@ -19,7 +19,6 @@ export class RootComponent implements OnInit {
   }
 
   async ngOnInit() {
-    debugger;
     {
         let snackBarRef = this.snackBar.openFromComponent(InfoSnackbarComponent, {
           duration: 3000,

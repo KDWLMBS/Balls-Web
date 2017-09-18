@@ -12,11 +12,15 @@ export class DashboardComponent implements OnInit {
   editable: Boolean;
   patterns: Array<Pattern>;
 
+  frames: Array<Pattern[]>;
+
   constructor(ps: PatternService) {
     this.patternService = ps;
 
     this.editable = false;
     this.patterns = new Array<Pattern>();
+
+    this.frames = new Array<Pattern[]>();
   }
 
   ngOnInit() {
@@ -24,5 +28,12 @@ export class DashboardComponent implements OnInit {
       .then((res) => {
         this.patterns = res;
       });
+
+    for(let i = 0; i < 5; i++){
+      this.patternService.getPatterns()
+        .then((res) => {
+          this.frames.push(res);
+        });
+    }
   }
 }

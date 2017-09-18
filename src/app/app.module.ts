@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 /* Material Design */
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MdIconModule} from '@angular/material';
+import {MdTabsModule} from '@angular/material';
 import {MdMenuModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
 import {MdSliderModule} from '@angular/material';
@@ -28,6 +29,7 @@ import { TestComponent } from './routes/test/test.component';
 
 import { VertcialSliderComponent } from './components/vertcial-slider/vertcial-slider.component';
 import { PatternComponent } from './components/pattern/pattern.component';
+import { FramesComponent } from './components/frames/frames.component';
 import { InfoSnackbarComponent } from './components/snackbars/info-snackbar/info-snackbar.component';
 import { ActionSnackbarComponent } from './components/snackbars/action-snackbar/action-snackbar.component';
 import { WarningSnackbarComponent } from './components/snackbars/warning-snackbar/warning-snackbar.component';
@@ -44,7 +46,8 @@ import { ErrorSnackbarComponent } from './components/snackbars/error-snackbar/er
     InfoSnackbarComponent,
     ActionSnackbarComponent,
     WarningSnackbarComponent,
-    ErrorSnackbarComponent
+    ErrorSnackbarComponent,
+    FramesComponent
   ],
   entryComponents: [
     InfoSnackbarComponent,
@@ -58,6 +61,7 @@ import { ErrorSnackbarComponent } from './components/snackbars/error-snackbar/er
     AppRoutingModule,
     BrowserAnimationsModule,
     MdIconModule,
+    MdTabsModule,
     MdMenuModule,
     MdButtonModule,
     MdSliderModule,
