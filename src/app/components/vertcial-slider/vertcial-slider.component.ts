@@ -1,6 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { PatternElement } from "../../services/pattern.service";
-
 
 @Component({
   selector: 'app-vertcial-slider',
@@ -11,7 +9,7 @@ import { PatternElement } from "../../services/pattern.service";
 })
 export class VertcialSliderComponent implements OnInit {
   @Input() editable: boolean;
-  @Input() element: PatternElement | null;
+  @Input() element: { index: number, value: number } | null;
   @Output() valueUpdated = new EventEmitter();
 
   disabled: string;
@@ -26,7 +24,7 @@ export class VertcialSliderComponent implements OnInit {
   onInputChange(ev) { //add debounce to improve performance
     console.log(this.element.index, ev);
 
-    let pe: PatternElement = { index: this.element.index, value: ev.value };
-    this.valueUpdated.emit(pe);
+    let e = { index: this.element.index, value: ev.value };
+    this.valueUpdated.emit(e);
   }
 }

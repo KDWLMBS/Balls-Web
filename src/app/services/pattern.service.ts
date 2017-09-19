@@ -1,45 +1,37 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from "@angular/common/http";
+
+import { Pattern } from "../classes/pattern";
 
 @Injectable()
-export class Pattern {
-  elements: Array<PatternElement>;
-
-  constructor() {
-    this.elements = new Array<PatternElement>();
-    for(let i = 0; i < 10; i++){
-      let ele: PatternElement = { index: i, value: Math.floor((Math.random()*99)+1) }
-      this.elements.push(ele);
-    }
-  }
-}
-export interface PatternElement {
-  index: number,
-  value: number
-}
 export class PatternService {
-  private _simPattern: Pattern;
-
-  constructor() {
+  constructor(private http: HttpClient) { }
+  
+  async getAll(): Promise<Pattern[]> {
+    console.log('request');
+    this.http.get('http://localhost:8080/api/pattern/all')
+      .subscribe((data) => {
+        let p: Pattern = new Pattern();
+        Object.assign(p, data);
+        return p;
+      });
   }
 
-  get simPattern(): Pattern {
-    if(!this._simPattern) this._simPattern = new Pattern();
-    return this._simPattern;
+  async get(id: string): Promise<Pattern> {
+    this.http.get(`http://localhost:8080/api/pattern/${id}`)
+      .subscribe((res) => {
+        console.log(res);
+        // return <Pattern>JSON.parse(res);
+      });
+    return new Pattern();
   }
 
-  set simPattern(pattern: Pattern) {
-    this._simPattern = pattern;
-  }
-
-  private _cachedPattern: Pattern;
-
-  async getPatterns(): Promise<Array<Pattern>> {
-    if(!this._cachedPattern) this._cachedPattern = new Pattern();
-
-    let patterns = new Array<Pattern>();
-    for(let i = 0; i < 15; i++){
-      patterns.push(this._cachedPattern);
-    }
-    return patterns;
+  async save(pattern: Pattern) {
+    debugger;
+    let body = JSON.stringify(pattern);
+    this.http.put('http://localhost:8080/api/pattern', body)
+      .subscribe((data) => {
+        console.log(data);
+      });
   }
 }

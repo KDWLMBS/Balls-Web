@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PatternService, Pattern, PatternElement } from "../../services/pattern.service"
+import { PatternService } from "../../services/pattern.service";
+import { Pattern } from "../../classes/pattern";
 
 @Component({
   selector: 'app-test',
@@ -7,25 +8,17 @@ import { PatternService, Pattern, PatternElement } from "../../services/pattern.
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
-  patternService: PatternService;
-  pattern: Pattern;
-  
-  editable: boolean;
-  elements: Array<PatternElement>;
 
-  constructor(ps: PatternService) {
-    this.patternService = ps;
-    this.editable = true;
+  constructor(private patternService: PatternService) {
+    
   }
 
   ngOnInit() {
-    this.pattern = this.patternService.simPattern;
-    this.elements = this.pattern.elements.slice();
+    console.log('save');
+    this.patternService.save(new Pattern());
   }
 
-  handleElementsUpdated(pes: Array<PatternElement>) {
-    console.log("Elements Updated:", pes);
-
-    this.patternService.simPattern.elements = pes;
-  }
+  // handleElementsUpdated(pes: Array<PatternElement>) {
+  //   console.log("Elements Updated:", pes);
+  // }
 }

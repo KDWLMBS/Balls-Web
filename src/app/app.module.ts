@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from "@angular/forms";
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 /* Material Design */
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -59,6 +60,7 @@ import { ErrorSnackbarComponent } from './components/snackbars/error-snackbar/er
     BrowserModule,
     FormsModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MdIconModule,
     MdTabsModule,

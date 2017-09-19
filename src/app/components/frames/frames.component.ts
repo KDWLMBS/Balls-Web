@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output } from '@angular/core';
-import { PatternService, Pattern, PatternElement } from "../../services/pattern.service";
 
 @Component({
   selector: 'app-frames',
@@ -8,22 +7,18 @@ import { PatternService, Pattern, PatternElement } from "../../services/pattern.
   inputs: ['editable', 'frames']
 })
 export class FramesComponent implements OnInit {
-  patternService: PatternService;
   
   @Input() editable: boolean;
-  @Input() frames: Array<Pattern[]>;
+  @Input() frames: Array<any>;
 
-  constructor(ps: PatternService) {
-    this.patternService = ps;
+  constructor() {
     this.editable = true;
   }
 
   ngOnInit() {
   }
 
-  handleElementsUpdated(pes: Array<PatternElement>) {
+  handleElementsUpdated(pes: Array<any>) {
     console.log("Elements Updated:", pes);
-
-    this.patternService.simPattern.elements = pes;
   }
 }

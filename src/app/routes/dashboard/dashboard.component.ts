@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PatternService, Pattern } from "../../services/pattern.service";
+import { PatternService } from "../../services/pattern.service";
+
+import { Pattern } from "../../classes/pattern";
 
 @Component({
   selector: 'app-dashboard',
@@ -7,33 +9,21 @@ import { PatternService, Pattern } from "../../services/pattern.service";
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent implements OnInit {
-  private patternService: PatternService;
-
-  editable: Boolean;
-  patterns: Array<Pattern>;
-
-  frames: Array<Pattern[]>;
-
-  constructor(ps: PatternService) {
-    this.patternService = ps;
-
-    this.editable = false;
+  private patterns: Pattern[];
+  
+  constructor(private patternService: PatternService) {
     this.patterns = new Array<Pattern>();
-
-    this.frames = new Array<Pattern[]>();
   }
 
-  ngOnInit() {
-    this.patternService.getPatterns()
-      .then((res) => {
-        this.patterns = res;
+  async ngOnInit() {
+    let eles = await this.patternService.getAll()
+      .then(res => {
+        return res;
       });
-
-    for(let i = 0; i < 5; i++){
-      this.patternService.getPatterns()
-        .then((res) => {
-          this.frames.push(res);
-        });
-    }
+    console.log(eles);
+    eles.forEach(element => {
+      this.patternService.get(element._id)
+        .then(res => this.patterns.push(res));
+    });
   }
 }

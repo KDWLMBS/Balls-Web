@@ -1,4 +1,4 @@
 <div class="vertical-slider-component">
   <span>{{ element.value }}</span>
-  <md-slider vertical thumbLabel min="0" max="99" step="1" [disabled]="disabled" [ngModel]="element.value" (input)="onInputChange($event)"></md-slider> <!-- (input)="" -->
+  <md-slider vertical thumbLabel min="-100" max="100" step="1" [disabled]="disabled" [ngModel]="element.value" (input)="onInputChange($event)"></md-slider> <!-- (input)="" -->
 </div>
