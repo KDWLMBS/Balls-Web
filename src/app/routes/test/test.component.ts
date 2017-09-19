@@ -13,12 +13,5 @@ export class TestComponent implements OnInit {
     
   }
 
-  ngOnInit() {
-    console.log('save');
-    this.patternService.save(new Pattern());
-  }
-
-  // handleElementsUpdated(pes: Array<PatternElement>) {
-  //   console.log("Elements Updated:", pes);
-  // }
+  ngOnInit() { }
 }

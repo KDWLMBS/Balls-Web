@@ -21,8 +21,25 @@
   </md-grid-tile>
 </md-grid-list> -->
 
-<md-grid-list cols="1">
+<md-grid-list cols="5">
   <md-grid-tile *ngFor="let pattern of patterns">
     {{ pattern.name }} {{ pattern.frames.length }}
+    <div>
+      <button md-icon-button (click)="edit(pattern)">
+        <md-icon mdTooltip="edit">edit</md-icon>
+      </button>
+      <button md-icon-button (click)="delete(pattern)">
+        <md-icon mdTooltip="delete">delete</md-icon>
+      </button>
+      <button md-icon-button>
+        <md-icon mdTooltip="send">send</md-icon>
+      </button>
+    </div>
+  </md-grid-tile>
+  <md-grid-tile>
+    new pattern
+    <button md-icon-button (click)="newPattern()">
+      <md-icon mdTooltip="create a new pattern">add</md-icon>
+    </button>
   </md-grid-tile>
 </md-grid-list>
