@@ -32,6 +32,10 @@ export class RootComponent implements OnInit {
         extraClasses: ['snackbar', 'action'],
         data: 'App action!'
       });
+
+      snackBarRef.onAction().subscribe(() => {
+        console.log('action is working');
+      });
     }
     // {
     //   let snackBarRef = this.snackBar.openFromComponent(WarningSnackbarComponent, {
