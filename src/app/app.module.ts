@@ -12,6 +12,7 @@ import {MdMenuModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
 import {MdSliderModule} from '@angular/material';
 import {MdGridListModule} from '@angular/material';
+import {MdDialogModule} from '@angular/material'
 import {MdSnackBarModule} from '@angular/material';
 import {MdTooltipModule} from '@angular/material';
 
@@ -22,18 +23,24 @@ import { AppRoutingModule } from "./modules/app-routing.module";
 import { UserService } from './services/user.service';
 import { PatternService } from './services/pattern.service';
 
-/* Components */
+/* Routes */
 import { RootComponent } from './routes/root/root.component';
 import { DashboardComponent } from './routes/dashboard/dashboard.component';
 import { NotFoundComponent } from './routes/not-found/not-found.component';
 import { TestComponent } from './routes/test/test.component';
 
+/* Elements */
 import { VertcialSliderComponent } from './components/vertcial-slider/vertcial-slider.component';
 import { PatternComponent } from './components/pattern/pattern.component';
+
+/* SnackBars */
 import { InfoSnackbarComponent } from './components/snackbars/info-snackbar/info-snackbar.component';
 import { ActionSnackbarComponent } from './components/snackbars/action-snackbar/action-snackbar.component';
 import { WarningSnackbarComponent } from './components/snackbars/warning-snackbar/warning-snackbar.component';
 import { ErrorSnackbarComponent } from './components/snackbars/error-snackbar/error-snackbar.component';
+
+/* Dialogs */
+import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -46,13 +53,15 @@ import { ErrorSnackbarComponent } from './components/snackbars/error-snackbar/er
     InfoSnackbarComponent,
     ActionSnackbarComponent,
     WarningSnackbarComponent,
-    ErrorSnackbarComponent
+    ErrorSnackbarComponent,
+    ConfirmDialogComponent
   ],
   entryComponents: [
     InfoSnackbarComponent,
     ActionSnackbarComponent,
     WarningSnackbarComponent,
-    ErrorSnackbarComponent
+    ErrorSnackbarComponent,
+    ConfirmDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +76,8 @@ import { ErrorSnackbarComponent } from './components/snackbars/error-snackbar/er
     MdSliderModule,
     MdGridListModule,
     MdSnackBarModule,
-    MdTooltipModule
+    MdTooltipModule,
+    MdDialogModule
   ],
   providers: [
     UserService,
