@@ -22,16 +22,19 @@ import { AppRoutingModule } from "./modules/app-routing.module";
 /* Services */
 import { UserService } from './services/user.service';
 import { PatternService } from './services/pattern.service';
+import { WebsocketService } from './services/websocket.service';
 
 /* Routes */
 import { RootComponent } from './routes/root/root.component';
 import { DashboardComponent } from './routes/dashboard/dashboard.component';
-import { NotFoundComponent } from './routes/not-found/not-found.component';
+import { PatternComponent } from './routes/pattern/pattern.component';
 import { TestComponent } from './routes/test/test.component';
+import { NotFoundComponent } from './routes/not-found/not-found.component';
 
 /* Elements */
-import { VertcialSliderComponent } from './components/vertcial-slider/vertcial-slider.component';
-import { PatternComponent } from './components/pattern/pattern.component';
+import { VerticalSliderComponent } from './components/vertical-slider/vertical-slider.component';
+import { FramesComponent } from './components/frames/frames.component';
+import { FrameComponent } from './components/frame/frame.component';
 
 /* SnackBars */
 import { InfoSnackbarComponent } from './components/snackbars/info-snackbar/info-snackbar.component';
@@ -45,7 +48,7 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
 @NgModule({
   declarations: [
     DashboardComponent,
-    VertcialSliderComponent,
+    VerticalSliderComponent,
     TestComponent,
     RootComponent,
     NotFoundComponent,
@@ -54,7 +57,9 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     ActionSnackbarComponent,
     WarningSnackbarComponent,
     ErrorSnackbarComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    FramesComponent,
+    FrameComponent
   ],
   entryComponents: [
     InfoSnackbarComponent,
@@ -81,7 +86,8 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
   ],
   providers: [
     UserService,
-    PatternService
+    PatternService,
+    WebsocketService
   ],
   bootstrap: [RootComponent]
 })

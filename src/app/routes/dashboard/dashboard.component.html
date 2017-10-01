@@ -1,29 +1,12 @@
 <h1>Dashboard</h1>
 
-<!-- <md-grid-list cols="1" rowHeight="12.5em">
-  <md-grid-tile *ngFor="let frame of frames">
-    <md-tab-group>
-        <md-tab label="Frame" *ngFor="let patterns of frame; let pat of patterns;">
-          <ng-template md-tab-label>
-            <md-icon>assistant</md-icon>
-          </ng-template>
-          <app-pattern [elements]="pat.elements" [editable]="editable"></app-pattern>
-          <div>
-            <button md-icon-button>
-              <md-icon class="md-24" mdTooltip="edit" aria-label="Example icon-button with a heart icon">edit</md-icon>
-            </button>
-            <button md-icon-button>
-              <md-icon class="md-24" mdTooltip="delete" aria-label="Example icon-button with a heart icon">delete</md-icon>
-            </button>
-          </div>
-        </md-tab>
-    </md-tab-group>
-  </md-grid-tile>
-</md-grid-list> -->
+<button md-icon-button (click)="newPattern()">
+  <md-icon mdTooltip="create a new pattern" mdTooltipPosition="right">add</md-icon>
+</button>
 
 <md-grid-list cols="5">
   <md-grid-tile *ngFor="let pattern of patterns">
-    {{ pattern.name }} {{ pattern.frames.length }}
+    {{ pattern.name }}
     <div>
       <button md-icon-button (click)="edit(pattern)">
         <md-icon mdTooltip="edit">edit</md-icon>
@@ -35,11 +18,5 @@
         <md-icon mdTooltip="send">send</md-icon>
       </button>
     </div>
-  </md-grid-tile>
-  <md-grid-tile>
-    new pattern
-    <button md-icon-button (click)="newPattern()">
-      <md-icon mdTooltip="create a new pattern">add</md-icon>
-    </button>
   </md-grid-tile>
 </md-grid-list>

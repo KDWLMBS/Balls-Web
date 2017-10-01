@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VertcialSliderComponent } from './vertcial-slider.component';
+import { FramesComponent } from './frames.component';
 
-describe('VertcialSliderComponent', () => {
-  let component: VertcialSliderComponent;
-  let fixture: ComponentFixture<VertcialSliderComponent>;
+describe('FramesComponent', () => {
+  let component: FramesComponent;
+  let fixture: ComponentFixture<FramesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VertcialSliderComponent ]
+      declarations: [ FramesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VertcialSliderComponent);
+    fixture = TestBed.createComponent(FramesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

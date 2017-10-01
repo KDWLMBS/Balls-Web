@@ -6,6 +6,7 @@ import { Pattern } from "../classes/pattern";
 
 @Injectable()
 export class PatternService {
+
   constructor(private http: HttpClient) { }
   
   async getAll(): Promise<Pattern[]> {
@@ -13,7 +14,7 @@ export class PatternService {
     return this.http.get<Pattern[]>('http://localhost:8080/api/pattern/all')
       .toPromise()
       .then((data) => {
-        console.log(`get() -> ${data}`);
+        console.log(`getAll() -> ${data}`);
         return data;
       })
       .catch((err: HttpErrorResponse) => {
@@ -55,7 +56,7 @@ export class PatternService {
     let body = JSON.stringify(pattern);
     console.log('body ', body);
 
-    this.http.put('http://localhost:8080/api/pattern', pattern)
+    this.http.post(`http://localhost:8080/api/pattern/${pattern._id}`, pattern)
       .toPromise()
       .then((data) => {
         console.log(`save(${pattern}) -> `, data);

@@ -2,9 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { PatternService } from "../../services/pattern.service";
 import { Pattern } from "../../classes/pattern";
 
-import { MdDialog } from "@angular/material";
-import { ConfirmDialogComponent } from "../../components/dialogs/confirm-dialog/confirm-dialog.component";
-
 @Component({
   selector: 'app-test',
   templateUrl: './test.component.html',
@@ -12,16 +9,13 @@ import { ConfirmDialogComponent } from "../../components/dialogs/confirm-dialog/
 })
 export class TestComponent implements OnInit {
 
+  arr: Array<{ val: number }>;
+
   constructor(
-    private patternService: PatternService,
-    private dialog: MdDialog
-  ) { }
+    private patternService: PatternService
+  ) {
+    this.arr = [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }];
+  }
 
   ngOnInit() { }
-
-  click(ev) {
-    let dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { title: "Test Dialog", question: "Do you really want to delete this pattern!" }
-    });
-  }
 }

@@ -10,7 +10,6 @@ export class Pattern {
         this.name = `${Date.now()}`;
         this.lastModified = Date.now();
         this.frames = new Array<Frame>();
-        for(let i = 0; i < 5; i++) this.frames.push(new Frame());
     }
 }
 
@@ -19,7 +18,7 @@ export class Frame {
     positions: Array<number>;
 
     constructor()  {
-        this.duration = 1;
-        this.positions = [ -100, -50, -25, -10, 0, 10, 25, 50, 100 ];
+        this.duration = 0;
+        this.positions = new Array<number>();
     }
 }
