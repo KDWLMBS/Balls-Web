@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Frame } from "../../classes/pattern";
+import { Frame } from '../../classes/pattern';
 
 @Component({
   selector: 'app-frame',
@@ -17,8 +17,9 @@ export class FrameComponent implements OnInit {
   // Also add valueInput as Output for socket simulation
 
   set frame(val) {
-    debugger;
-    if(!this._frame) this._frame = val;
+    if (!this._frame) {
+      this._frame = val;
+    }
     this.frameChange.emit(this._frame);
   }
 

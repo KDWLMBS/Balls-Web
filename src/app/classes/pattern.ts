@@ -1,4 +1,4 @@
-import { PatternService } from "../services/pattern.service";
+import { PatternService } from '../services/pattern.service';
 
 export class Pattern {
     _id: string;
@@ -19,6 +19,6 @@ export class Frame {
 
     constructor()  {
         this.duration = 0;
-        this.positions = new Array<number>();
+        this.positions = [ -100, -75, -50, -25, -10, 0, 10, 25, 50, 75, 100 ];
     }
 }

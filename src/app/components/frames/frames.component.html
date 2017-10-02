@@ -1,4 +1,3 @@
-<button md-button (click)="addFrame($event)">Add Frame</button>
 <md-tab-group>
     <md-tab label="Frame" *ngFor="let frame of frames; let idx = index">
         <ng-template md-tab-label>
@@ -6,7 +5,6 @@
           {{ idx }}
         </ng-template>
         
-
         <app-frame [(frame)]="frames[idx]"></app-frame>
     </md-tab>
 </md-tab-group>

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { Frame } from "../../classes/pattern";
+import { PatternService } from '../../services/pattern.service';
+import { Frame } from '../../classes/pattern';
 
 @Component({
   selector: 'app-frames',
@@ -16,15 +17,15 @@ export class FramesComponent implements OnInit {
   @Output() framesChange = new EventEmitter();
 
   set frames(val) {
-    if(!this._frames) this._frames = val;
+    if (!this._frames) {
+      this._frames = val;
+    }
     this.framesChange.emit(this._frames);
   }
 
-  constructor() { }
+  constructor(
+    private patternService: PatternService,
+  ) { }
 
   ngOnInit() { }
-
-  addFrame(e) {
-    this._frames.push(new Frame());
-  }
 }

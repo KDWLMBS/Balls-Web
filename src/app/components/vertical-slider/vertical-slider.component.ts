@@ -22,15 +22,14 @@ export class VerticalSliderComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
-    debugger;
-  }
+  ngOnInit() { }
 
   onChange(e) {
     this.value = e.value;
   }
 
   onInput(e) {
-    // emit event to valueInput
+    // onChange is just changing the value on mouseup
+    // this.value = e.value;
   }
 }

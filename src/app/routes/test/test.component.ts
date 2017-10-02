@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { PatternService } from "../../services/pattern.service";
-import { Pattern } from "../../classes/pattern";
+import { PatternService } from '../../services/pattern.service';
+import { Pattern } from '../../classes/pattern';
 
 @Component({
   selector: 'app-test',
@@ -14,7 +14,7 @@ export class TestComponent implements OnInit {
   constructor(
     private patternService: PatternService
   ) {
-    this.arr = [{ val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }, { val: 1 }];
+    this.arr = [{ val: 1 }, { val: 10 }, { val: 25 }, { val: 50 }, { val: 100 }];
   }
 
   ngOnInit() { }

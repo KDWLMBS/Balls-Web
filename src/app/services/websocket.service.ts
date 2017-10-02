@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import * as io from "socket.io";
+import * as io from 'socket.io';
+
 @Injectable()
 export class WebsocketService {
   socket: any;

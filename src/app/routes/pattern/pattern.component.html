@@ -1,3 +1,16 @@
-<button md-button (click)="save($event)">Save</button>
+<div *ngIf="isLoading">
+    <md-spinner></md-spinner>
+</div>
+<div *ngIf="!isLoading">
+    <div *ngIf="pattern">
+        <button md-button (click)="save($event)">Save</button>
+        <button md-button (click)="addFrame($event)">Add Frame</button>
+        <md-slide-toggle [checked]="checked" (change)="slideChange($event)">Live view?</md-slide-toggle>
 
-<app-frames ngIf="pattern.frames" [(frames)]="pattern.frames"></app-frames>
+        <app-frames [(frames)]="pattern.frames"></app-frames>
+        <app-frames-preview [frames]="pattern.frames"></app-frames-preview>
+    </div>
+    <div *ngIf="!pattern">
+        <h3>There's no pattern with this id!</h3>
+    </div>
+</div>

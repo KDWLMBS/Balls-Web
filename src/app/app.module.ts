@@ -6,18 +6,21 @@ import { HttpClientModule } from '@angular/common/http';
 
 /* Material Design */
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatProgressSpinnerModule} from '@angular/material';
 import {MdIconModule} from '@angular/material';
 import {MdTabsModule} from '@angular/material';
 import {MdMenuModule} from '@angular/material';
 import {MdButtonModule} from '@angular/material';
 import {MdSliderModule} from '@angular/material';
 import {MdGridListModule} from '@angular/material';
-import {MdDialogModule} from '@angular/material'
+import {MdDialogModule} from '@angular/material';
 import {MdSnackBarModule} from '@angular/material';
 import {MdTooltipModule} from '@angular/material';
+import {MatInputModule} from '@angular/material';
+import {MatSlideToggleModule} from '@angular/material';
 
 /* Modules */
-import { AppRoutingModule } from "./modules/app-routing.module";
+import { AppRoutingModule } from './modules/app-routing.module';
 
 /* Services */
 import { UserService } from './services/user.service';
@@ -35,6 +38,7 @@ import { NotFoundComponent } from './routes/not-found/not-found.component';
 import { VerticalSliderComponent } from './components/vertical-slider/vertical-slider.component';
 import { FramesComponent } from './components/frames/frames.component';
 import { FrameComponent } from './components/frame/frame.component';
+import { FramesPreviewComponent } from './components/frames-preview/frames-preview.component';
 
 /* SnackBars */
 import { InfoSnackbarComponent } from './components/snackbars/info-snackbar/info-snackbar.component';
@@ -59,7 +63,8 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     ErrorSnackbarComponent,
     ConfirmDialogComponent,
     FramesComponent,
-    FrameComponent
+    FrameComponent,
+    FramesPreviewComponent
   ],
   entryComponents: [
     InfoSnackbarComponent,
@@ -74,6 +79,7 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    MatProgressSpinnerModule,
     MdIconModule,
     MdTabsModule,
     MdMenuModule,
@@ -82,7 +88,9 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     MdGridListModule,
     MdSnackBarModule,
     MdTooltipModule,
-    MdDialogModule
+    MdDialogModule,
+    MatInputModule,
+    MatSlideToggleModule
   ],
   providers: [
     UserService,
