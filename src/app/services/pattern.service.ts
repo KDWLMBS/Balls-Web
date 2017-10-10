@@ -44,6 +44,14 @@ export class PatternService {
       });
   }
 
+  async add(pattern: Pattern) {
+    this.http.put('http://localhost:8080/api/pattern', pattern)
+      .toPromise()
+      .then((data) => {
+        console.log(`add(${pattern}) -> `, data);
+      });
+  }
+
   async save(pattern: Pattern) {
     console.log('pattern ', pattern);
 

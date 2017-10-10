@@ -19,6 +19,6 @@ export class Frame {
 
     constructor()  {
         this.duration = 0;
-        this.positions = [ -100, -75, -50, -25, -10, 0, 10, 25, 50, 75, 100 ];
+        this.positions = [ -100, -75, -50, -25, -10, 10, 25, 50, 75, 100 ];
     }
 }

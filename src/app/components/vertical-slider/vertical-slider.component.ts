@@ -6,6 +6,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./vertical-slider.component.scss']
 })
 export class VerticalSliderComponent implements OnInit {
+  @Input() disabled: boolean;
+
   _value: number;
   @Input()
   get value() {
@@ -20,7 +22,9 @@ export class VerticalSliderComponent implements OnInit {
     this.valueChange.emit(this._value);
   }
 
-  constructor() { }
+  constructor() {
+    this.disabled = false;
+  }
 
   ngOnInit() { }
 

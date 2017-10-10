@@ -8,24 +8,48 @@ import { Frame } from '../../classes/pattern';
 })
 export class FramesPreviewComponent implements OnInit {
   @Input() frames: Array<Frame>;
-  frame: Frame;
+
   currentIdx: number;
+  frame: Frame;
+
+  positions: Array<number>;
+  deltaTime: number;
 
   constructor() {
     this.currentIdx = 0;
+    this.deltaTime = 1000;
   }
 
   ngOnInit() {
-    setInterval(() => this.update(), 100);
+    this.frame = this.frames[this.currentIdx];
+    this.positions = [];
+    for (let i = 0; i < this.frames[this.currentIdx].positions.length; i++) {
+      this.positions.push(0);
+    }
+
+    setInterval(() => {
+      setTimeout(() => {
+        if (this.currentIdx >= this.frames.length - 1) {
+          this.currentIdx = 0;
+        } else {
+          this.currentIdx++;
+        }
+      }, this.deltaTime);
+    });
+    setInterval(() => this.update(), this.deltaTime / 2);
   }
 
   update() {
-    if (this.currentIdx > this.frames.length) {
-      this.currentIdx = 0;
-    } else {
-      this.currentIdx += 1;
+    const next = this.frames[this.currentIdx];
+    if (next) {
+      for (let i = 0; i < this.positions.length; i++) {
+        this.positions[i] = Math.floor(next.positions[i]);
+      }
     }
+  }
 
-    this.frame.positions.values()
+  lerp(start, end): number {
+    const amt = 0.5;
+    return (1 - amt) * start + amt * end;
   }
 }
