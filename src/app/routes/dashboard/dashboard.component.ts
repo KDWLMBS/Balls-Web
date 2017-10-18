@@ -48,23 +48,20 @@ export class DashboardComponent implements OnInit {
 
   delete(pattern: Pattern) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
-      data: { title: 'Test Dialog', question: 'Do you really want to delete this pattern!' }
+      data: { title: pattern.name, question: 'Do you really want to delete this pattern!' }
     });
 
     dialogRef.afterClosed().subscribe((res) => {
-      console.log(res);
-
       if (res) {
         const idx = this.patterns.indexOf(pattern);
         if (idx > -1) {
           this.patterns.splice(idx, 1);
           this.patternService.delete(pattern._id);
         }
-
         const snackBarRef = this.snackbar.openFromComponent(InfoSnackbarComponent, {
-          duration: 1500,
+          duration: 300,
           extraClasses: ['snackbar', 'info'],
-          data: 'Pattern deleted!'
+          data: 'Pattern succesfully deleted!'
         });
       }
     });

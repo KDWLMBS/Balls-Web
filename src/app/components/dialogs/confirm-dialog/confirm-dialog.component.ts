@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MdDialogRef, MD_DIALOG_DATA } from "@angular/material";
+import { MdDialogRef, MD_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-confirm-dialog',
@@ -12,9 +12,6 @@ export class ConfirmDialogComponent {
     public dialogRef: MdDialogRef<ConfirmDialogComponent>,
     @Inject(MD_DIALOG_DATA) public data: any
   ) { }
-
-  ngOnInit() {
-  }
 
   confirm(ev) {
     this.dialogRef.close(true);

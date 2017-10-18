@@ -15,7 +15,6 @@ export class VerticalSliderComponent implements OnInit {
   }
 
   @Output() valueChange = new EventEmitter();
-  // Also add valueInput as Output for socket simulation
 
   set value(val) {
     this._value = val;

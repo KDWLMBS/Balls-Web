@@ -1,8 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { MdSlideToggleChange } from '@angular/material';
-import { PatternService } from '../../services/pattern.service';
-import { Pattern, Frame } from '../../classes/pattern';
 
 @Component({
   selector: 'app-pattern',
@@ -10,43 +6,38 @@ import { Pattern, Frame } from '../../classes/pattern';
   styleUrls: ['./pattern.component.css']
 })
 export class PatternComponent implements OnInit {
-  private isLoading: boolean;
-  private pattern: Pattern;
-  private checked: boolean;
+  points: Array<number>;
+  step = 0;
 
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private patternService: PatternService
-  ) {
-    this.isLoading = true;
-    this.checked = false;
+  constructor() {
+    this.points = new Array();
   }
 
-  async ngOnInit() {
-    this.route.params.subscribe((data) => {
-      this.patternService.get(data.id)
-        .then((res) => {
-          this.pattern = res;
-          this.isLoading = false;
-        })
-        .catch((reason) => {
-          this.isLoading = false;
-        });
-    });
-  }
+  ngOnInit() {
+    // const data: Chart.ChartData = this.chart.data;
 
-  save(ev) {
-    this.patternService.save(this.pattern);
-  }
+    const dummy: Array<number> = new Array<number>();
+    for (let i = 0; i < 30; i++) {
+      // const num = Math.floor(1000 * mathjs.eval(this.data.formula, { x: this.data.minX + i * (len / 29) }));
 
-  addFrame(e) {
-    this.pattern.frames.push(new Frame());
-  }
+      dummy.push(i * (1 / 29));
 
-  slideChange(e: MdSlideToggleChange) {
-    if (e.checked) {
-      this.patternService.play(this.pattern._id);
+      // data.labels.push(i.toString());
+      // data.datasets[0].data[i] = num;
     }
+
+    this.points = dummy;
+  }
+
+  setStep(index: number) {
+    this.step = index;
+  }
+
+  nextStep() {
+    this.step++;
+  }
+
+  prevStep() {
+    this.step--;
   }
 }

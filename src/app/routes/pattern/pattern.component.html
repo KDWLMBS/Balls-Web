@@ -1,16 +1,68 @@
-<div *ngIf="isLoading">
-    <md-spinner></md-spinner>
-</div>
-<div *ngIf="!isLoading">
-    <div *ngIf="pattern">
-        <button md-button (click)="save($event)">Save</button>
-        <button md-button (click)="addFrame($event)">Add Frame</button>
-        <md-slide-toggle [(ngModel)]="checked" (change)="slideChange($event)">Live view?</md-slide-toggle>
+<md-accordion class="example-headers-align">
+    <md-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle="true">
+      <md-expansion-panel-header>
+        <md-panel-title>
+          Personal data
+        </md-panel-title>
+        <md-panel-description>
+          Type your name and age
+          <md-icon>account_circle</md-icon>
+        </md-panel-description>
+      </md-expansion-panel-header>
+  
+      <md-form-field>
+        <input mdInput placeholder="First name">
+      </md-form-field>
+  
+      <md-form-field>
+        <input mdInput type="number" min="1" placeholder="Age">
+      </md-form-field>
+  
 
-        <app-frames [(frames)]="pattern.frames"></app-frames>
-        <app-frames-preview *ngIf="checked" [frames]="pattern.frames"></app-frames-preview> 
-    </div>
-    <div *ngIf="!pattern">
-        <h3>There's no pattern with this id!</h3>
-    </div>
-</div>
+      <app-chart [points]="points" min-x="0" max-x="1" min-y="-1000" max-y="1000"></app-chart>
+
+
+      <md-action-row>
+        <button md-button color="primary" (click)="nextStep()">Next</button>
+      </md-action-row>
+    </md-expansion-panel>
+  
+    <md-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle="true">
+      <md-expansion-panel-header>
+        <md-panel-title>
+          Destination
+        </md-panel-title>
+        <md-panel-description>
+          Type the country name
+          <md-icon>map</md-icon>
+        </md-panel-description>
+      </md-expansion-panel-header>
+  
+      <md-form-field>
+        <input mdInput placeholder="Country">
+      </md-form-field>
+  
+      <md-action-row>
+        <button md-button color="warn" (click)="prevStep()">Previous</button>
+        <button md-button color="primary" (click)="nextStep()">Next</button>
+      </md-action-row>
+    </md-expansion-panel>
+  
+    <md-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle="true">
+      <md-expansion-panel-header>
+        <md-panel-title>
+          Day of the trip
+        </md-panel-title>
+        <md-panel-description>
+          Inform the date you wish to travel
+          <md-icon>date_range</md-icon>
+        </md-panel-description>
+      </md-expansion-panel-header>
+  
+      <md-action-row>
+        <button md-button color="warn" (click)="prevStep()">Previous</button>
+        <button md-button color="primary" (click)="nextStep()">End</button>
+      </md-action-row>
+    </md-expansion-panel>
+  
+  </md-accordion>

@@ -3,8 +3,10 @@
   <p>{{ data.question }}</p>
 </div>
 <div md-dialog-actions>
-  <button md-button (click)="confirm()" tabindex="2">Confirm</button>
-  <button md-button (click)="cancel()" tabindex="-1">Cancel</button>
+  <div style="margin: auto;">
+    <button md-raised-button color="primary" (click)="confirm()" tabindex="2">Confirm</button>
+    <button md-raised-button (click)="cancel()" tabindex="-1">Cancel</button>
+  </div>
 </div>
 
 <!-- 

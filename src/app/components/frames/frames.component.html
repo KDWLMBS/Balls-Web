@@ -4,7 +4,11 @@
           <md-icon>assistant</md-icon>
           {{ idx }}
         </ng-template>
-        
-        <app-frame [(frame)]="frames[idx]"></app-frame>
+        <div style="padding: 1em 0;">
+            <md-form-field>
+                <input mdInput type="number" placeholder="Duration [ms]" [(ngModel)]="frame.duration">
+            </md-form-field>
+            <app-frame [(frame)]="frames[idx]"></app-frame>
+        </div>
     </md-tab>
 </md-tab-group>

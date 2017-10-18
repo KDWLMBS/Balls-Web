@@ -1,22 +1,24 @@
-<h1>Dashboard</h1>
-
 <button md-icon-button (click)="newPattern()">
   <md-icon mdTooltip="create a new pattern" mdTooltipPosition="right">add</md-icon>
 </button>
 
-<md-grid-list cols="5">
+<md-grid-list cols="1" rowHeight="5em">
   <md-grid-tile *ngFor="let pattern of patterns">
-    {{ pattern.name }}
-    <div>
-      <button md-icon-button (click)="edit(pattern)">
-        <md-icon mdTooltip="edit">edit</md-icon>
-      </button>
-      <button md-icon-button (click)="delete(pattern)">
-        <md-icon mdTooltip="delete">delete</md-icon>
-      </button>
-      <button md-icon-button>
-        <md-icon mdTooltip="send">send</md-icon>
-      </button>
+    <div class="tile">
+      <span class='left'>
+        {{ pattern.name }}
+      </span>
+      <div class='right'>
+        <button md-icon-button (click)="edit(pattern)">
+          <md-icon mdTooltip="edit">edit</md-icon>
+        </button>
+        <button md-icon-button (click)="delete(pattern)">
+          <md-icon mdTooltip="delete">delete</md-icon>
+        </button>
+        <button md-icon-button>
+          <md-icon mdTooltip="send">send</md-icon>
+        </button>
+      </div>
     </div>
   </md-grid-tile>
 </md-grid-list>

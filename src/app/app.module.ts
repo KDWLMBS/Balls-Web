@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from "@angular/forms";
+import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -18,6 +18,7 @@ import {MdSnackBarModule} from '@angular/material';
 import {MdTooltipModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {MatSlideToggleModule} from '@angular/material';
+import {MatExpansionModule} from '@angular/material';
 
 /* Modules */
 import { AppRoutingModule } from './modules/app-routing.module';
@@ -31,6 +32,7 @@ import { WebsocketService } from './services/websocket.service';
 import { RootComponent } from './routes/root/root.component';
 import { DashboardComponent } from './routes/dashboard/dashboard.component';
 import { PatternComponent } from './routes/pattern/pattern.component';
+import { PatternIdComponent } from './routes/pattern-id/pattern-id.component';
 import { TestComponent } from './routes/test/test.component';
 import { NotFoundComponent } from './routes/not-found/not-found.component';
 
@@ -39,6 +41,7 @@ import { VerticalSliderComponent } from './components/vertical-slider/vertical-s
 import { FramesComponent } from './components/frames/frames.component';
 import { FrameComponent } from './components/frame/frame.component';
 import { FramesPreviewComponent } from './components/frames-preview/frames-preview.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 /* SnackBars */
 import { InfoSnackbarComponent } from './components/snackbars/info-snackbar/info-snackbar.component';
@@ -64,7 +67,9 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     ConfirmDialogComponent,
     FramesComponent,
     FrameComponent,
-    FramesPreviewComponent
+    FramesPreviewComponent,
+    ChartComponent,
+    PatternIdComponent
   ],
   entryComponents: [
     InfoSnackbarComponent,
@@ -90,7 +95,8 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     MdTooltipModule,
     MdDialogModule,
     MatInputModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatExpansionModule
   ],
   providers: [
     UserService,
