@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
 
-import { Pattern } from '../classes/pattern';
+import { Pattern, Formula } from '../classes/pattern';
 
 @Injectable()
 export class PatternService {
@@ -67,6 +67,14 @@ export class PatternService {
     .toPromise()
     .then((data) => {
       console.log(`play(${id}) -> `, data);
+    });
+  }
+
+  async playFo(formula: Formula) {
+    this.http.post(`http://localhost:8080/api/pattern/play/formula`, formula)
+    .toPromise()
+    .then((data) => {
+      console.log(`playFo(${formula}) ->`, data);
     });
   }
 

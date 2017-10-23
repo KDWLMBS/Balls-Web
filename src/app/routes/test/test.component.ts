@@ -31,6 +31,13 @@ export class TestComponent implements OnInit {
         }]
       },
       options: {
+        showLines: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        },
         scales: {
           xAxes: [{
             ticks: {
@@ -63,6 +70,16 @@ export class TestComponent implements OnInit {
 
   ngOnInit() {
     this.renewChart();
+
+    setInterval(() => {
+      if (this.chart) {
+        this.chart.data.datasets[0].data[30] = this.chart.data.datasets[0].data[0];
+        for (let i = 0; i < 30; i++) {
+          this.chart.data.datasets[0].data[i] = this.chart.data.datasets[0].data[i + 1];
+        }
+        this.chart.update();
+      }
+    }, 100);
   }
 
   onChange(e) {
@@ -85,7 +102,7 @@ export class TestComponent implements OnInit {
     const len = Math.abs(this.data.minX - this.data.maxX);
 
     for (let i = 0; i < 30; i++) {
-      const num = Math.floor(1000 * mathjs.eval(this.data.formula, { x: this.data.minX + i * (len / 29) }));
+      const num = Math.floor(1000 * mathjs.eval(this.data.formula, { x: this.data.minX + i * (len / 30) }));
 
       data.labels.push(i.toString());
       data.datasets[0].data[i] = num;

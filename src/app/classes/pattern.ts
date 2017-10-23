@@ -1,5 +1,3 @@
-import { PatternService } from '../services/pattern.service';
-
 export class Pattern {
     _id: string;
     name: string;
@@ -19,6 +17,28 @@ export class Frame {
 
     constructor()  {
         this.duration = 0;
-        this.positions = [ -100, -75, -50, -25, -10, 10, 25, 50, 75, 100 ];
+        this.positions = [];
+        for (let i = 0; i < 30; i++) {
+            this.positions.push(0);
+        }
     }
 }
+
+export interface Formula {
+    formula: string;
+    x: { min: number, max: number };
+    y: { min: number, max: number };
+}
+
+export enum PATTERNTYPE {
+    single,
+    multiple,
+    formula
+}
+
+export enum ANIMATIONTYPE {
+    static,
+    dynamic,
+    floating
+}
+

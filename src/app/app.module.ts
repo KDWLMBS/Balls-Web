@@ -19,6 +19,7 @@ import {MdTooltipModule} from '@angular/material';
 import {MatInputModule} from '@angular/material';
 import {MatSlideToggleModule} from '@angular/material';
 import {MatExpansionModule} from '@angular/material';
+import {MatSelectModule} from '@angular/material';
 
 /* Modules */
 import { AppRoutingModule } from './modules/app-routing.module';
@@ -96,7 +97,8 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     MdDialogModule,
     MatInputModule,
     MatSlideToggleModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSelectModule
   ],
   providers: [
     UserService,
