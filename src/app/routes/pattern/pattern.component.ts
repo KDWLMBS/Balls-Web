@@ -72,11 +72,10 @@ export class PatternComponent implements OnInit {
       typeof this.data.atype === 'number'
       ) {
         const pat = new Pattern();
-        pat.type = this.data.ptype;
+        pat.type = PATTERNTYPE[this.data.ptype];
         pat.shift = this.data.atype === ANIMATIONTYPE.SHIFTING ? true : false;
         this.patternService.add(pat)
           .then(res => {
-            debugger;
             this.router.navigate(['/pattern', res._id ]);
           });
         // check if save was succesful

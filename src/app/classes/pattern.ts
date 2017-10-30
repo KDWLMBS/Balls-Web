@@ -2,7 +2,7 @@ export class Pattern {
     _id: string;
     name: string;
     lastModified: number;
-    type: PATTERNTYPE;
+    type: string;
     frames: Array<Frame>;
     shift: boolean; // enabled if ANIMATIONTYPE is shifting
     shiftDirection: SHIFTDIRECTION;
