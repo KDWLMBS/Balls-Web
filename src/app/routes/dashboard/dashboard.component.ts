@@ -66,4 +66,8 @@ export class DashboardComponent implements OnInit {
       }
     });
   }
+
+  play(pattern: Pattern) {
+    this.patternService.play(pattern._id);
+  }
 }

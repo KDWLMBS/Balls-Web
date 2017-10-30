@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { PATTERNTYPE, ANIMATIONTYPE } from './../../classes/pattern';
+import { Router } from '@angular/router';
+import { Pattern, PATTERNTYPE, ANIMATIONTYPE } from '../../classes/pattern';
+import { PatternService } from '../../services/pattern.service';
 
 @Component({
   selector: 'app-pattern',
@@ -7,52 +9,77 @@ import { PATTERNTYPE, ANIMATIONTYPE } from './../../classes/pattern';
   styleUrls: ['./pattern.component.css']
 })
 export class PatternComponent implements OnInit {
-  aTypes: Array<any>;
-  pTypes: Array<any>;
+  pTypes: Array<{ key: number, value: string }>;
+  aTypes: Array<{ key: number, value: string }>;
 
   data: {
     points: Array<number>,
     name: string,
-    ptype: PATTERNTYPE,
-    atype: ANIMATIONTYPE
+    ptype: number,
+    atype: number
   };
 
-  constructor() {
+  constructor(
+    private router: Router,
+    private patternService: PatternService
+  ) {
     this.data = {
       points: [],
       name: '',
-      ptype: PATTERNTYPE.single,
-      atype: ANIMATIONTYPE.static
+      ptype: undefined,
+      atype: undefined
     };
 
     this.pTypes = [];
     for (const item in PATTERNTYPE) {
       if (isNaN(Number(item))) {
-        this.pTypes.push({ key: PATTERNTYPE[item], value: item });
+        this.pTypes.push({ key: Number(PATTERNTYPE[item]), value: item });
         console.log(PATTERNTYPE[item], item);
       }
     }
 
     this.aTypes = [];
-    for (const item in ANIMATIONTYPE) {
-      if (isNaN(Number(item))) {
-        this.aTypes.push({ key: ANIMATIONTYPE[item], value: item });
-        console.log(ANIMATIONTYPE[item], item);
-      }
-    }
   }
 
   ngOnInit() {
     const dummy: Array<number> = new Array<number>();
     for (let i = 0; i < 30; i++) {
-      // const num = Math.floor(1000 * mathjs.eval(this.data.formula, { x: this.data.minX + i * (len / 29) }));
-
       dummy.push(i * (1 / 29));
-
-      // data.labels.push(i.toString());
-      // data.datasets[0].data[i] = num;
     }
 
     this.data.points = dummy;
+  }
+
+  typeChanged(ev) {
+    this.aTypes.splice(0, this.aTypes.length);
+    switch (this.data.ptype) {
+      case PATTERNTYPE.SINGLE:
+        this.aTypes.push({ key: Number(ANIMATIONTYPE.STATIC), value: ANIMATIONTYPE[0] });
+        this.aTypes.push({ key: Number(ANIMATIONTYPE.SHIFTING), value: ANIMATIONTYPE[1] });
+        break;
+      case PATTERNTYPE.MULTIPLE:
+      this.aTypes.push({ key: Number(ANIMATIONTYPE.STATIC), value: ANIMATIONTYPE[0] });
+        break;
+    }
+  }
+
+
+  save(ev) {
+    // check if parameters are set and create new pattern + save it, also redirect to dashboard
+    if (
+      this.data.name &&
+      typeof this.data.ptype === 'number' &&
+      typeof this.data.atype === 'number'
+      ) {
+        const pat = new Pattern();
+        pat.type = this.data.ptype;
+        pat.shift = this.data.atype === ANIMATIONTYPE.SHIFTING ? true : false;
+        this.patternService.add(pat)
+          .then(res => {
+            debugger;
+            this.router.navigate(['/pattern', res._id ]);
+          });
+        // check if save was succesful
+    }
   }
 }

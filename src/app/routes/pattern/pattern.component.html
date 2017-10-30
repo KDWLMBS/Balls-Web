@@ -12,7 +12,7 @@
     <input mdInput placeholder="Name" [(ngModel)]="data.name" required>
   </md-form-field>
   
-  <md-select placeholder="Pattern" [(ngModel)]="data.ptype">
+  <md-select placeholder="Pattern" [(ngModel)]="data.ptype" (change)="typeChanged($event)">
       <md-option *ngFor="let item of pTypes" [(value)]="item.key">
         {{ item.value }}
       </md-option>
@@ -25,7 +25,7 @@
   </md-select>
 
   <md-action-row>
-      <button md-button color="warn" (click)="save()">SAVE</button>
+      <button md-button color="warn" (click)="save($event)">SAVE</button>
     </md-action-row>
 </md-expansion-panel>
 

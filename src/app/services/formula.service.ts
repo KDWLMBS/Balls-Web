@@ -5,15 +5,13 @@ import 'rxjs/add/operator/toPromise';
 import { Pattern, Formula } from '../classes/pattern';
 
 @Injectable()
-export class PatternService {
+export class FormulaService {
   constructor(private http: HttpClient) { }
 
-  async getAll(): Promise<Pattern[]> {
-    console.log(`getAll() called!`);
-    return this.http.get<Pattern[]>('http://localhost:8080/api/pattern/all')
+  async getAll(): Promise<Formula[]> {
+    return this.http.get<Formula[]>('http://localhost:8080/api/formula/all')
       .toPromise()
       .then((data) => {
-        console.log(`getAll() -> ${data}`);
         return data;
       })
       .catch((err: HttpErrorResponse) => {
@@ -22,16 +20,14 @@ export class PatternService {
         } else {
           console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
         }
-        return new Array<Pattern>();
+        return [];
       });
   }
 
-  async get(id: string): Promise<Pattern> {
-    console.log(`get(${id}) called!`);
-    return this.http.get<Pattern>(`http://localhost:8080/api/pattern/${id}`)
+  async get(id: string): Promise<Formula> {
+    return this.http.get<Formula>(`http://localhost:8080/api/formula/${id}`)
       .toPromise()
       .then((data) => {
-        console.log(`get(${id}) -> `, data);
         return data;
       })
       .catch((err: HttpErrorResponse) => {
@@ -44,27 +40,24 @@ export class PatternService {
       });
   }
 
-  async add(pattern: Pattern): Promise<Pattern> {
-    return await this.http.put<Pattern>('http://localhost:8080/api/pattern', pattern)
+  async add(formula: Formula) {
+    this.http.put('http://localhost:8080/api/formula/', formula)
       .toPromise()
       .then((data) => {
-        console.log(`add(${pattern}) -> `, data);
-        return data;
+        console.log(`add(${formula}) -> `, data);
       });
   }
 
-  async save(pattern: Pattern): Promise<Pattern> {
-    console.log('pattern ', pattern);
-    return await this.http.post<Pattern>(`http://localhost:8080/api/pattern/${pattern._id}`, pattern)
+  async save(formula: Formula) {
+    this.http.post(`http://localhost:8080/api/formula/${formula._id}`, formula)
       .toPromise()
       .then((data) => {
-        console.log(`save(${pattern}) -> `, data);
-        return data;
+        console.log(`save(${formula}) -> `, data);
       });
   }
 
   async play(id: string) {
-    this.http.post(`http://localhost:8080/api/pattern/play/${id}`, null)
+    this.http.post(`http://localhost:8080/api/formula/play/${id}`, null)
     .toPromise()
     .then((data) => {
       console.log(`play(${id}) -> `, data);
@@ -72,7 +65,7 @@ export class PatternService {
   }
 
   async delete(id: string) {
-    this.http.delete(`http://localhost:8080/api/pattern/${id}`)
+    this.http.delete(`http://localhost:8080/api/formula/${id}`)
       .toPromise()
       .then((data) => {
         console.log(`delete(${id}) -> `, data);

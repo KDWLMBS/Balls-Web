@@ -2,17 +2,21 @@ export class Pattern {
     _id: string;
     name: string;
     lastModified: number;
+    type: PATTERNTYPE;
     frames: Array<Frame>;
+    shift: boolean; // enabled if ANIMATIONTYPE is shifting
+    shiftDirection: SHIFTDIRECTION;
+    shiftDuration: number;
 
     constructor() {
         this.name = `${Date.now()}`;
         this.lastModified = Date.now();
-        this.frames = new Array<Frame>();
+        this.frames = [];
     }
 }
 
 export class Frame {
-    duration: number;
+    duration: number; // ignored for single
     positions: Array<number>;
 
     constructor()  {
@@ -24,21 +28,36 @@ export class Frame {
     }
 }
 
-export interface Formula {
+export class Formula {
+    _id: string;
+    name: string;
+    lastModified: number;
     formula: string;
-    x: { min: number, max: number };
-    y: { min: number, max: number };
+    minX: number;
+    maxX: number;
+    minY: number;
+    maxY: number;
+    shift: boolean;
+    shiftDirection: SHIFTDIRECTION;
+    shiftDuration: number;
+
+    constructor(name: string) {
+        this.name = name;
+        this.lastModified = Date.now();
+    }
 }
 
 export enum PATTERNTYPE {
-    single,
-    multiple,
-    formula
+    SINGLE,
+    MULTIPLE
 }
 
 export enum ANIMATIONTYPE {
-    static,
-    dynamic,
-    floating
+    STATIC,
+    SHIFTING
 }
 
+export enum SHIFTDIRECTION {
+    LEFT,
+    RIGHT
+}

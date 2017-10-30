@@ -8,4 +8,7 @@ export class WebsocketService {
       this.socket = io('http://localhost:8080');
    }
 
+   sendFrame(frame) {
+    this.socket.emit('frame', frame);
+   }
 }

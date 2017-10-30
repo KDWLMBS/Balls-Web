@@ -36,6 +36,7 @@ import { PatternComponent } from './routes/pattern/pattern.component';
 import { PatternIdComponent } from './routes/pattern-id/pattern-id.component';
 import { TestComponent } from './routes/test/test.component';
 import { NotFoundComponent } from './routes/not-found/not-found.component';
+import { FormulaComponent } from './routes/formula/formula.component';
 
 /* Elements */
 import { VerticalSliderComponent } from './components/vertical-slider/vertical-slider.component';
@@ -70,7 +71,8 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     FrameComponent,
     FramesPreviewComponent,
     ChartComponent,
-    PatternIdComponent
+    PatternIdComponent,
+    FormulaComponent
   ],
   entryComponents: [
     InfoSnackbarComponent,
