@@ -36,12 +36,7 @@ export class DashboardComponent implements OnInit {
   }
 
   newPattern() {
-    const pattern = new Pattern();
-    this.patternService.add(pattern)
-      .then(res => {
-        this.patterns.push(res);
-      });
-    // Todo: Just push when save was succesfull
+    this.router.navigate(['/pattern']);
   }
 
   edit(pattern: Pattern) {
