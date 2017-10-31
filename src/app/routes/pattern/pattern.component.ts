@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { Pattern, PATTERNTYPE, ANIMATIONTYPE } from '../../classes/pattern';
+import { Pattern, Frame, PATTERNTYPE, ANIMATIONTYPE } from '../../classes/pattern';
 import { PatternService } from '../../services/pattern.service';
 
 @Component({
@@ -71,12 +71,15 @@ export class PatternComponent implements OnInit {
       typeof this.data.ptype === 'number' &&
       typeof this.data.atype === 'number'
       ) {
-        const pat = new Pattern();
+        const pat = new Pattern(this.data.name);
         pat.type = PATTERNTYPE[this.data.ptype];
         pat.shift = this.data.atype === ANIMATIONTYPE.SHIFTING ? true : false;
+        pat.frames.push(new Frame());
         this.patternService.add(pat)
           .then(res => {
-            this.router.navigate(['/pattern', res._id ]);
+            if (res) {
+              this.router.navigate(['/pattern', res._id ]);
+            }
           });
         // check if save was succesful
     }

@@ -1,0 +1,9 @@
+<div *ngIf="pattern">
+  <button md-button (click)="save($event)">Save</button>
+  <button md-button (click)="addFrame($event)">Add Frame</button>
+  <md-form-field>
+      <input mdInput type="text" placeholder="Name" [(ngModel)]="pattern.name">
+  </md-form-field>
+  
+  <app-frames [(frames)]="pattern.frames"></app-frames>
+</div>

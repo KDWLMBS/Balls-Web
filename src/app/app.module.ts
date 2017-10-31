@@ -27,6 +27,7 @@ import { AppRoutingModule } from './modules/app-routing.module';
 /* Services */
 import { UserService } from './services/user.service';
 import { PatternService } from './services/pattern.service';
+import { FormulaService } from './services/formula.service';
 import { WebsocketService } from './services/websocket.service';
 
 /* Routes */
@@ -34,9 +35,12 @@ import { RootComponent } from './routes/root/root.component';
 import { DashboardComponent } from './routes/dashboard/dashboard.component';
 import { PatternComponent } from './routes/pattern/pattern.component';
 import { PatternIdComponent } from './routes/pattern-id/pattern-id.component';
+import { PatternSingleComponent } from './routes/pattern-single/pattern-single.component';
+import { PatternMultipleComponent } from './routes/pattern-multiple/pattern-multiple.component';
+import { FormulaComponent } from './routes/formula/formula.component';
+import { FormulaIdComponent } from './routes/formula-id/formula-id.component';
 import { TestComponent } from './routes/test/test.component';
 import { NotFoundComponent } from './routes/not-found/not-found.component';
-import { FormulaComponent } from './routes/formula/formula.component';
 
 /* Elements */
 import { VerticalSliderComponent } from './components/vertical-slider/vertical-slider.component';
@@ -57,11 +61,16 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
 @NgModule({
   declarations: [
     DashboardComponent,
-    VerticalSliderComponent,
     TestComponent,
     RootComponent,
     NotFoundComponent,
     PatternComponent,
+    PatternIdComponent,
+    PatternSingleComponent,
+    PatternMultipleComponent,
+    FormulaComponent,
+    FormulaIdComponent,
+    VerticalSliderComponent,
     InfoSnackbarComponent,
     ActionSnackbarComponent,
     WarningSnackbarComponent,
@@ -70,9 +79,7 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     FramesComponent,
     FrameComponent,
     FramesPreviewComponent,
-    ChartComponent,
-    PatternIdComponent,
-    FormulaComponent
+    ChartComponent
   ],
   entryComponents: [
     InfoSnackbarComponent,
@@ -105,6 +112,7 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
   providers: [
     UserService,
     PatternService,
+    FormulaService,
     WebsocketService
   ],
   bootstrap: [RootComponent]

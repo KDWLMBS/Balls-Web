@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { MdSlideToggleChange } from '@angular/material';
 import { PatternService } from '../../services/pattern.service';
-import { Pattern, Frame } from '../../classes/pattern';
+import { Pattern, Frame, PATTERNTYPE } from '../../classes/pattern';
 
 @Component({
   selector: 'app-pattern-id',
@@ -11,8 +11,6 @@ import { Pattern, Frame } from '../../classes/pattern';
 })
 export class PatternIdComponent implements OnInit {
   private isLoading: boolean;
-  private pattern: Pattern;
-  private checked: boolean;
 
   constructor(
     private router: Router,
@@ -20,33 +18,20 @@ export class PatternIdComponent implements OnInit {
     private patternService: PatternService
   ) {
     this.isLoading = true;
-    this.checked = false;
   }
 
   async ngOnInit() {
     this.route.params.subscribe((data) => {
       this.patternService.get(data.id)
         .then((res) => {
-          this.pattern = res;
+          console.log('patternId', res);
           this.isLoading = false;
+
+          this.router.navigate([`/pattern/${res.type.toLowerCase()}/`, res._id ]);
         })
         .catch((reason) => {
-          this.isLoading = false;
+          this.isLoading = true;
         });
     });
-  }
-
-  save(ev) {
-    this.patternService.save(this.pattern);
-  }
-
-  addFrame(e) {
-    this.pattern.frames.push(new Frame());
-  }
-
-  slideChange(e: MdSlideToggleChange) {
-    if (e.checked) {
-      this.patternService.play(this.pattern._id);
-    }
   }
 }

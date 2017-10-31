@@ -8,8 +8,8 @@ export class Pattern {
     shiftDirection: SHIFTDIRECTION;
     shiftDuration: number;
 
-    constructor() {
-        this.name = `${Date.now()}`;
+    constructor(name: string) {
+        this.name = name;
         this.lastModified = Date.now();
         this.frames = [];
     }
