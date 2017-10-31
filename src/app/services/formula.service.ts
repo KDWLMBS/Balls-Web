@@ -1,63 +1,52 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/toPromise';
-
-import { Pattern, Formula } from '../classes/pattern';
+import { environment } from '../../environments/environment';
+import { Formula } from '../classes/pattern';
 
 @Injectable()
 export class FormulaService {
   constructor(private http: HttpClient) { }
 
   async getAll(): Promise<Formula[]> {
-    return this.http.get<Formula[]>('http://localhost:8080/api/formula/all')
+    return await this.http.get<Formula[]>(`${environment.apiUrl}formula/all`)
       .toPromise()
       .then((data) => {
         return data;
-      })
-      .catch((err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log('An error occurred:', err.error.message);
-        } else {
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        }
-        return [];
       });
   }
 
   async get(id: string): Promise<Formula> {
-    return this.http.get<Formula>(`http://localhost:8080/api/formula/${id}`)
+    return await this.http.get<Formula>(`${environment.apiUrl}formula/${id}`)
       .toPromise()
       .then((data) => {
         return data;
-      })
-      .catch((err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log('An error occurred:', err.error.message);
-        } else {
-          console.log(`Backend returned code ${err.status}, body was: ${err.error}`);
-        }
-        return null;
       });
   }
 
-  async add(formula: Formula) {
-    this.http.put('http://localhost:8080/api/formula/', formula)
+  async add(formula: Formula): Promise<Formula> {
+    return await this.http.put<Formula>(`${environment.apiUrl}formula`, formula)
       .toPromise()
       .then((data) => {
         console.log(`add(${formula}) -> `, data);
+        return data;
       });
   }
 
-  async save(formula: Formula) {
-    this.http.post(`http://localhost:8080/api/formula/${formula._id}`, formula)
+  async save(formula: Formula): Promise<boolean> {
+    return await this.http.post(`${environment.apiUrl}formula/${formula._id}`, formula)
       .toPromise()
       .then((data) => {
         console.log(`save(${formula}) -> `, data);
+        return true;
+      })
+      .catch(err => {
+        return false;
       });
   }
 
   async play(id: string) {
-    this.http.post(`http://localhost:8080/api/formula/play/${id}`, null)
+    this.http.post(`${environment.apiUrl}formula/play/${id}`, null)
     .toPromise()
     .then((data) => {
       console.log(`play(${id}) -> `, data);
@@ -65,7 +54,7 @@ export class FormulaService {
   }
 
   async delete(id: string) {
-    this.http.delete(`http://localhost:8080/api/formula/${id}`)
+    this.http.delete(`${environment.apiUrl}formula/${id}`)
       .toPromise()
       .then((data) => {
         console.log(`delete(${id}) -> `, data);

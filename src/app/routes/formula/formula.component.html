@@ -1,10 +1,10 @@
 <md-expansion-panel expanded="true" hideToggle="true">
   <md-expansion-panel-header>
     <md-panel-title>
-      Pattern Data
+      Formula Data
     </md-panel-title>
     <md-panel-description>
-      Set Type, Name and other parameters
+      Set Animation, Name and other parameters
     </md-panel-description>
   </md-expansion-panel-header>
 
@@ -17,6 +17,10 @@
       {{ item.value }}
     </md-option>
   </md-select>
+
+  <md-form-field>
+    <input mdInput placeholder="Formula" [(ngModel)]="data.formula" required>
+  </md-form-field>
 
   <md-action-row>
     <button md-button color="warn" (click)="save($event)">SAVE</button>

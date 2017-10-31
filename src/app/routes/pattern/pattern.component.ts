@@ -41,14 +41,7 @@ export class PatternComponent implements OnInit {
     this.aTypes = [];
   }
 
-  ngOnInit() {
-    const dummy: Array<number> = new Array<number>();
-    for (let i = 0; i < 30; i++) {
-      dummy.push(i * (1 / 29));
-    }
-
-    this.data.points = dummy;
-  }
+  ngOnInit() { }
 
   typeChanged(ev) {
     this.aTypes.splice(0, this.aTypes.length);

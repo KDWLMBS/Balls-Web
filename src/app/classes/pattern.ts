@@ -38,7 +38,7 @@ export class Formula {
     minY: number;
     maxY: number;
     shift: boolean;
-    shiftDirection: SHIFTDIRECTION;
+    shiftDirection: string;
     shiftDuration: number;
 
     constructor(name: string) {
