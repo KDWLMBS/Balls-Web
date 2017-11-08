@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { PatternService } from '../../services/pattern.service';
 import { Router } from '@angular/router';
-
-import { Pattern } from '../../classes/pattern';
+import { PatternService } from '../../services/pattern.service';
+import { FormulaService } from '../../services/formula.service';
+import { Pattern, Formula } from '../../classes/pattern';
 
 import { MdDialog } from '@angular/material';
 import { ConfirmDialogComponent } from '../../components/dialogs/confirm-dialog/confirm-dialog.component';
@@ -17,18 +17,28 @@ import { InfoSnackbarComponent } from '../../components/snackbars/info-snackbar/
 })
 export class DashboardComponent implements OnInit {
   private patterns: Pattern[];
+  private formulas: Formula[];
 
   constructor(
     private router: Router,
     private patternService: PatternService,
+    private formulaService: FormulaService,
     private dialog: MdDialog,
     private snackbar: MdSnackBar
   ) {
     this.patterns = new Array<Pattern>();
   }
 
+  // this class might be one of the best examples of code dublication, have fun ^^
+
   async ngOnInit() {
     this.patterns = await this.patternService.getAll()
+      .then(data => {
+        console.log(`received ->`, data);
+        return data;
+      });
+
+    this.formulas = await this.formulaService.getAll()
       .then(data => {
         console.log(`received ->`, data);
         return data;
@@ -39,11 +49,19 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/pattern']);
   }
 
-  edit(pattern: Pattern) {
+  newFormula() {
+    this.router.navigate(['/formula']);
+  }
+
+  editPattern(pattern: Pattern) {
     this.router.navigate(['/pattern', pattern._id ]);
   }
 
-  delete(pattern: Pattern) {
+  editFormula(formula: Formula) {
+    this.router.navigate(['/formula', formula._id ]);
+  }
+
+  deletePattern(pattern: Pattern) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: { title: pattern.name, question: 'Do you really want to delete this pattern!' }
     });
@@ -64,7 +82,32 @@ export class DashboardComponent implements OnInit {
     });
   }
 
-  play(pattern: Pattern) {
+  deleteFormula(formula: Formula) {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      data: { title: formula.name, question: 'Do you really want to delete this formula!' }
+    });
+
+    dialogRef.afterClosed().subscribe((res) => {
+      if (res) {
+        const idx = this.formulas.indexOf(formula);
+        if (idx > -1) {
+          this.formulas.splice(idx, 1);
+          this.formulaService.delete(formula._id);
+        }
+        const snackBarRef = this.snackbar.openFromComponent(InfoSnackbarComponent, {
+          duration: 300,
+          extraClasses: ['snackbar', 'info'],
+          data: 'Formula succesfully deleted!'
+        });
+      }
+    });
+  }
+
+  playPattern(pattern: Pattern) {
     this.patternService.play(pattern._id);
+  }
+
+  playFormula(formula: Formula) {
+    this.formulaService.play(formula._id);
   }
 }

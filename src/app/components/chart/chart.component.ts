@@ -13,13 +13,13 @@ export class ChartComponent implements OnInit {
   @Input() maxX: number;
   @Input() minY: number;
   @Input() maxY: number;
-  @Input() floating: boolean;
+  @Input() shifting: boolean;
 
   private chart: Chart;
 
   constructor() {
     this.points = new Array();
-    this.floating = false;
+    this.shifting = false;
   }
 
   ngOnInit() {
@@ -79,7 +79,7 @@ export class ChartComponent implements OnInit {
 
     this.chart.update();
 
-    if (this.floating) {
+    if (this.shifting) {
       setInterval(() => {
         if (this.chart) {
           this.chart.data.datasets[0].data[30] = this.chart.data.datasets[0].data[0];

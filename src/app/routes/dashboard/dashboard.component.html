@@ -9,16 +9,41 @@
         {{ pattern.name }}
       </span>
       <div class='right'>
-        <button md-icon-button (click)="edit(pattern)">
+        <button md-icon-button (click)="editPattern(pattern)">
           <md-icon mdTooltip="edit">edit</md-icon>
         </button>
-        <button md-icon-button (click)="delete(pattern)">
+        <button md-icon-button (click)="deletePattern(pattern)">
           <md-icon mdTooltip="delete">delete</md-icon>
         </button>
-        <button md-icon-button (click)="play(pattern)">
+        <button md-icon-button (click)="playPattern(pattern)">
           <md-icon mdTooltip="play">send</md-icon>
         </button>
       </div>
     </div>
   </md-grid-tile>
 </md-grid-list>
+
+<button md-icon-button (click)="newFormula()">
+    <md-icon mdTooltip="create a new formula" mdTooltipPosition="right">add</md-icon>
+  </button>
+  
+  <md-grid-list cols="1" rowHeight="5em">
+    <md-grid-tile *ngFor="let formula of formulas">
+      <div class="tile">
+        <span class='left'>
+          {{ formula.name }}
+        </span>
+        <div class='right'>
+          <button md-icon-button (click)="editFormula(formula)">
+            <md-icon mdTooltip="edit">edit</md-icon>
+          </button>
+          <button md-icon-button (click)="deleteFormula(formula)">
+            <md-icon mdTooltip="delete">delete</md-icon>
+          </button>
+          <button md-icon-button (click)="playFormula(formula)">
+            <md-icon mdTooltip="play">send</md-icon>
+          </button>
+        </div>
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
