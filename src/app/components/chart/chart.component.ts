@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, OnChanges, OnDestroy, ViewChild, Input } from '@angular/core';
 import { Chart } from 'chart.js';
 
 @Component({
@@ -6,23 +6,31 @@ import { Chart } from 'chart.js';
   templateUrl: './chart.component.html',
   styleUrls: ['./chart.component.css']
 })
-export class ChartComponent implements OnInit {
+export class ChartComponent implements OnChanges, OnDestroy {
   @ViewChild('canvasChart') myCanvas;
   @Input() points: Array<number>;
   @Input() minX: number;
   @Input() maxX: number;
   @Input() minY: number;
   @Input() maxY: number;
-  @Input() shifting: boolean;
+  @Input() shift: boolean;
 
   private chart: Chart;
 
+  private frameCounter: number;
+  private lastFrame: number;
+  private destroyed: boolean;
+
   constructor() {
     this.points = new Array();
-    this.shifting = false;
+    this.shift = false;
+    this.frameCounter = 0;
+    this.lastFrame = null;
+    this.destroyed = false;
   }
 
-  ngOnInit() {
+
+  ngOnChanges() {
     if (this.chart) {
       this.chart.destroy();
       delete this.chart;
@@ -36,6 +44,7 @@ export class ChartComponent implements OnInit {
         }]
       },
       options: {
+        showLines: false,
         legend: {
           display: false
         },
@@ -79,16 +88,37 @@ export class ChartComponent implements OnInit {
 
     this.chart.update();
 
-    if (this.shifting) {
-      setInterval(() => {
-        if (this.chart) {
+    if (this.shift) {
+        this.doShift();
+    }
+  }
+
+  ngOnDestroy() {
+    alert('destroyed');
+    this.destroyed = true;
+  }
+
+  doShift() {
+    if (this.chart) {
+        if (this.lastFrame) {
+          console.log(`ElapsedTime: ${Date.now() - this.lastFrame}`);
+        }
+
+        this.lastFrame = Date.now();
+
+        this.frameCounter++;
+        if (this.frameCounter % 5 === 0) {
           this.chart.data.datasets[0].data[30] = this.chart.data.datasets[0].data[0];
           for (let i = 0; i < 30; i++) {
             this.chart.data.datasets[0].data[i] = this.chart.data.datasets[0].data[i + 1];
           }
           this.chart.update();
         }
-      }, 100);
-    }
+        if (this.shift && !this.destroyed) {
+          requestAnimationFrame(() => {
+            this.doShift();
+          });
+        }
+      }
   }
 }

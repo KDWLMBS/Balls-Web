@@ -51,9 +51,6 @@ export class FormulaIdComponent implements OnInit {
   }
 
   slideChange(e: MdSlideToggleChange) {
-    console.log(e);
     this.formula.shift = e.checked ? true : false;
-    console.log(this.formula.shift);
-    // this.draw();
   }
 }
