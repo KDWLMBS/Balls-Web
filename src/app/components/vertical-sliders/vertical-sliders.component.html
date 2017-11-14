@@ -1,0 +1,6 @@
+<div *ngFor="let pos of local; let i = index" >
+  <div class="vertical-slider-component">
+    <span>{{ positions[i] }}</span>
+    <md-slider vertical color="primary" min="-1000" max="1000" step="1" [value]="pos" [disabled]="disabled" (change)="onChange(i, $event)" (input)="onInput(i, $event)"></md-slider>
+  </div>
+</div>

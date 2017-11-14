@@ -45,4 +45,15 @@ export class FormulaIdComponent implements OnInit {
       this.points.push(num);
     }
   }
+
+  onChange(ev) {
+    this.draw();
+  }
+
+  slideChange(e: MdSlideToggleChange) {
+    console.log(e);
+    this.formula.shift = e.checked ? true : false;
+    console.log(this.formula.shift);
+    // this.draw();
+  }
 }

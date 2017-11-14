@@ -7,19 +7,22 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class VerticalSliderComponent implements OnInit {
   @Input() disabled: boolean;
-
-  _value: number;
-  @Input()
-  get value() {
-    return this._value;
-  }
-
+  @Input() index: number;
+  @Input() value: number;
   @Output() valueChange = new EventEmitter();
 
-  set value(val) {
-    this._value = val;
-    this.valueChange.emit(this._value);
-  }
+  // _value: number;
+  // @Input()
+  // get value() {
+  //   return this._value;
+  // }
+
+  // @Output() valueChange = new EventEmitter();
+
+  // set value(val) {
+  //   this._value = val;
+  //   this.valueChange.emit(val);
+  // }
 
   constructor() {
     this.disabled = false;
@@ -28,7 +31,9 @@ export class VerticalSliderComponent implements OnInit {
   ngOnInit() { }
 
   onChange(e) {
-    this.value = e.value;
+    // this.value = e.value;
+    console.log(this.index, this.value);
+    this.valueChange.emit({ index: this.index, value: e.value });
   }
 
   onInput(e) {

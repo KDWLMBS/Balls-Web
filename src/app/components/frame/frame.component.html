@@ -1,6 +1,9 @@
 <div style="padding-top: 2.5em">
-  
-  <div *ngFor="let pos of frame.positions; let idx = index" >
-    <app-vertical-slider [(value)]="frame.positions[idx]"></app-vertical-slider>
+  <!-- input duration frame.duration -->
+  <!-- <div *ngFor="let pos of frame.positions; let idx = index" >
+    <app-vertical-slider [index]="idx" [value]="pos" (valueChange)="valueChange($event)"></app-vertical-slider>
+  </div> -->
+  <div *ngIf="frame">
+    <app-vertical-sliders [positions]="frame.positions" (positionsChange)="positionsChanged($event)"></app-vertical-sliders>
   </div>
 </div>

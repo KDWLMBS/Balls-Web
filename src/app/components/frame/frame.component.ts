@@ -26,4 +26,15 @@ export class FrameComponent implements OnInit {
   constructor() { }
 
   ngOnInit() { }
+
+  valueChange(e: { index: number, value: number }) {
+    console.log(e);
+    console.log(this._frame.positions);
+    // this._frame.positions[e.index] = e.value;
+    console.log(this._frame.positions);
+  }
+
+  positionsChanged(e) {
+    console.log('positionsChanged', e);
+  }
 }

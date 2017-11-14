@@ -3,19 +3,20 @@
     <input mdInput placeholder="formula" [(ngModel)]="formula.formula" (change)="onChange($event)">
   </md-form-field>
   <md-form-field>
-    <input mdInput type="number" placeholder="minX" [(ngModel)]="formula.minX" (change)="onScaleChange($event)">
+    <input mdInput type="number" placeholder="minX" [(ngModel)]="formula.minX" (change)="onChange($event)">
   </md-form-field>
   <md-form-field>
-    <input mdInput type="number" placeholder="maxX" [(ngModel)]="formula.maxX" (change)="onScaleChange($event)">
+    <input mdInput type="number" placeholder="maxX" [(ngModel)]="formula.maxX" (change)="onChange($event)">
   </md-form-field>
   <md-form-field>
-    <input mdInput type="number" placeholder="minY" [(ngModel)]="formula.minY" (change)="onScaleChange($event)">
+    <input mdInput type="number" placeholder="minY" [(ngModel)]="formula.minY" (change)="onChange($event)">
   </md-form-field>
   <md-form-field>
-    <input mdInput type="number" placeholder="maxY" [(ngModel)]="formula.maxY" (change)="onScaleChange($event)">
+    <input mdInput type="number" placeholder="maxY" [(ngModel)]="formula.maxY" (change)="onChange($event)">
   </md-form-field>
+  <md-slide-toggle [checked]="formula.shift" (change)="slideChange($event)">Shifting?</md-slide-toggle>
 
   <div class="chart-container" style="position: relative; height:50vh; width:80%; margin: 1em auto;"> 
-    <app-chart [points]="points" min-x="formula.minX" max-x="formula.maxX" min-y="formula.minY" max-y="formula.maxY" shifting="formula.shifting"></app-chart> 
+    <app-chart [points]="points" [minX]="formula.minX" [maxX]="formula.maxX" [minY]="formula.minY" [maxY]="formula.maxY" [shifting]="formula.shift"></app-chart> 
   </div>
 </div>

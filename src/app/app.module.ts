@@ -44,6 +44,7 @@ import { NotFoundComponent } from './routes/not-found/not-found.component';
 
 /* Elements */
 import { VerticalSliderComponent } from './components/vertical-slider/vertical-slider.component';
+import { VerticalSlidersComponent } from './components/vertical-sliders/vertical-sliders.component';
 import { FramesComponent } from './components/frames/frames.component';
 import { FrameComponent } from './components/frame/frame.component';
 import { FramesPreviewComponent } from './components/frames-preview/frames-preview.component';
@@ -79,7 +80,8 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
     FramesComponent,
     FrameComponent,
     FramesPreviewComponent,
-    ChartComponent
+    ChartComponent,
+    VerticalSlidersComponent
   ],
   entryComponents: [
     InfoSnackbarComponent,
