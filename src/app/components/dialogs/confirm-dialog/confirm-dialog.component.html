@@ -1,0 +1,27 @@
+<h1 md-dialog-title>{{ data.title }}</h1>
+<div md-dialog-content>
+  <p>{{ data.question }}</p>
+</div>
+<div md-dialog-actions>
+  <div style="margin: auto;">
+    <button md-raised-button color="primary" (click)="confirm()" tabindex="2">Confirm</button>
+    <button md-raised-button (click)="cancel()" tabindex="-1">Cancel</button>
+  </div>
+</div>
+
+<!-- 
+Possible input-dialog
+  
+<h1 md-dialog-title>{{data.name}}</h1>
+<div md-dialog-content>
+  {{ data.text }}
+  <md-form-field>
+    <input mdInput tabindex="1" [(ngModel)]="data.input">
+  </md-form-field>
+</div>
+<div md-dialog-actions>
+  <button md-button [md-dialog-close]="data.input" tabindex="2">Confirm</button>
+  <button md-button (click)="cancel()" tabindex="-1">Cancel</button>
+</div> -->
+
+

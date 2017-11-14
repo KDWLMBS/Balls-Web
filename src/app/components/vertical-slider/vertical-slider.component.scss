@@ -1,6 +1,10 @@
 div.vertical-slider-component {
     float: left;
 
+    > md-slider {
+        height: 25em;
+    }
+
     > span {
         display: block;
         text-align: center;

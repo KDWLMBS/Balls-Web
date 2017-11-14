@@ -1,5 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { PatternService, Pattern, PatternElement } from "../../services/pattern.service"
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { PatternService } from '../../services/pattern.service';
+import { Pattern } from '../../classes/pattern';
+
+import * as mathjs from 'mathjs';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-test',
@@ -7,25 +11,102 @@ import { PatternService, Pattern, PatternElement } from "../../services/pattern.
   styleUrls: ['./test.component.css']
 })
 export class TestComponent implements OnInit {
-  patternService: PatternService;
-  pattern: Pattern;
-  
-  editable: boolean;
-  elements: Array<PatternElement>;
+  @ViewChild('canvasChart') myCanvas;
+  data: { formula: string, minX: number, maxX: number, minY: number, maxY: number };
 
-  constructor(ps: PatternService) {
-    this.patternService = ps;
-    this.editable = true;
+  chart: Chart;
+
+  constructor(
+    private patternService: PatternService
+  ) {
+    this.data = { formula: 'sin(x*pi/180)', minX: 0, maxX: 360, minY: -1000, maxY: 1000 };
+  }
+
+  getConf(): Chart.ChartConfiguration {
+    return {
+      type: 'line',
+      data: {
+        datasets: [{
+          label: 'Chart'
+        }]
+      },
+      options: {
+        showLines: false,
+        legend: {
+          display: false
+        },
+        tooltips: {
+          enabled: false
+        },
+        scales: {
+          xAxes: [{
+            ticks: {
+              min: this.data.minX,
+              max: this.data.maxX
+            }
+            // display: false
+          }],
+          yAxes: [{
+            ticks: {
+              min: this.data.minY,
+              max: this.data.maxY
+            }
+            // display: false
+          }]
+        },
+        elements: {
+          point: {
+            backgroundColor: 'red'
+          },
+          line: {
+            borderColor: 'red'
+          }
+        },
+        responsive: true,
+        maintainAspectRatio: false
+      }
+    };
   }
 
   ngOnInit() {
-    this.pattern = this.patternService.simPattern;
-    this.elements = this.pattern.elements.slice();
+    this.renewChart();
+
+    setInterval(() => {
+      if (this.chart) {
+        this.chart.data.datasets[0].data[30] = this.chart.data.datasets[0].data[0];
+        for (let i = 0; i < 30; i++) {
+          this.chart.data.datasets[0].data[i] = this.chart.data.datasets[0].data[i + 1];
+        }
+        this.chart.update();
+      }
+    }, 100);
   }
 
-  handleElementsUpdated(pes: Array<PatternElement>) {
-    console.log("Elements Updated:", pes);
+  onChange(e) {
+    this.renewChart();
+  }
 
-    this.patternService.simPattern.elements = pes;
+  onScaleChange(e) {
+    this.renewChart();
+  }
+
+  renewChart() {
+    if (this.chart) {
+      this.chart.destroy();
+      delete this.chart;
+    }
+
+    this.chart = new Chart(this.myCanvas.nativeElement, this.getConf());
+
+    const data: Chart.ChartData = this.chart.data;
+    const len = Math.abs(this.data.minX - this.data.maxX);
+
+    for (let i = 0; i < 30; i++) {
+      const num = Math.floor(1000 * mathjs.eval(this.data.formula, { x: this.data.minX + i * (len / 30) }));
+
+      data.labels.push(i.toString());
+      data.datasets[0].data[i] = num;
+    }
+    this.chart.update();
   }
 }

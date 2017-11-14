@@ -1,0 +1,8 @@
+<div *ngIf="isLoading">
+  <md-spinner></md-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div *ngIf="!pattern">
+      <h3>There's no pattern with this id!</h3>
+  </div>
+</div>

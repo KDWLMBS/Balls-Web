@@ -1,0 +1,28 @@
+<md-expansion-panel expanded="true" hideToggle="true">
+  <md-expansion-panel-header>
+    <md-panel-title>
+      Formula Data
+    </md-panel-title>
+    <md-panel-description>
+      Set Animation, Name and other parameters
+    </md-panel-description>
+  </md-expansion-panel-header>
+
+  <md-form-field>
+    <input mdInput placeholder="Name" [(ngModel)]="data.name" required>
+  </md-form-field>
+  
+  <md-select placeholder="Animation" [(ngModel)]="data.atype">
+    <md-option *ngFor="let item of aTypes" [(value)]="item.key">
+      {{ item.value }}
+    </md-option>
+  </md-select>
+
+  <md-form-field>
+    <input mdInput placeholder="Formula" [(ngModel)]="data.formula" required>
+  </md-form-field>
+
+  <md-action-row>
+    <button md-button color="warn" (click)="save($event)">SAVE</button>
+  </md-action-row>
+</md-expansion-panel>

@@ -1,45 +1,65 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
+import 'rxjs/add/operator/toPromise';
+import { environment } from '../../environments/environment';
+import { Pattern, Formula } from '../classes/pattern';
 
 @Injectable()
-export class Pattern {
-  elements: Array<PatternElement>;
-
-  constructor() {
-    this.elements = new Array<PatternElement>();
-    for(let i = 0; i < 10; i++){
-      let ele: PatternElement = { index: i, value: Math.floor((Math.random()*99)+1) }
-      this.elements.push(ele);
-    }
-  }
-}
-export interface PatternElement {
-  index: number,
-  value: number
-}
 export class PatternService {
-  private _simPattern: Pattern;
+  constructor(private http: HttpClient) { }
 
-  constructor() {
+  async getAll(): Promise<Pattern[]> {
+    console.log(`getAll() called!`);
+    return await this.http.get<Pattern[]>(`${environment.apiUrl}pattern/all`)
+      .toPromise()
+      .then((data) => {
+        console.log(`getAll() -> ${data}`);
+        return data;
+      });
   }
 
-  get simPattern(): Pattern {
-    if(!this._simPattern) this._simPattern = new Pattern();
-    return this._simPattern;
+  async get(id: string): Promise<Pattern> {
+    console.log(`get(${id}) called!`);
+    return await this.http.get<Pattern>(`${environment.apiUrl}pattern/${id}`)
+      .toPromise()
+      .then((data) => {
+        console.log(`get(${id}) -> `, data);
+        return data;
+      });
   }
 
-  set simPattern(pattern: Pattern) {
-    this._simPattern = pattern;
+  async add(pattern: Pattern): Promise<Pattern> {
+    return await this.http.put<Pattern>(`${environment.apiUrl}pattern`, pattern)
+      .toPromise()
+      .then((data) => {
+        console.log(`add(${pattern}) -> `, data);
+        return data;
+      });
   }
 
-  private _cachedPattern: Pattern;
+  async save(pattern: Pattern): Promise<Pattern> {
+    console.log('pattern ', pattern);
+    return await this.http.post<Pattern>(`${environment.apiUrl}pattern/${pattern._id}`, pattern)
+      .toPromise()
+      .then((data) => {
+        console.log(`save(${pattern}) -> `, data);
+        return data;
+      });
+  }
 
-  async getPatterns(): Promise<Array<Pattern>> {
-    if(!this._cachedPattern) this._cachedPattern = new Pattern();
+  async play(id: string) {
+    this.http.post(`${environment.apiUrl}pattern/play/${id}`, null)
+    .toPromise()
+    .then((data) => {
+      console.log(`play(${id}) -> `, data);
+    });
+  }
 
-    let patterns = new Array<Pattern>();
-    for(let i = 0; i < 15; i++){
-      patterns.push(this._cachedPattern);
-    }
-    return patterns;
+  async delete(id: string) {
+    this.http.delete(`${environment.apiUrl}pattern/${id}`)
+      .toPromise()
+      .then((data) => {
+        console.log(`delete(${id}) -> `, data);
+      });
   }
 }

@@ -1,5 +1,14 @@
 <md-tab-group>
-  <md-tab label="Tab 1" *ngFor="let frame of frames">
-    <app-pattern [editable]="editable" [elements]="frame.pattern.elements" (elementsUpdated)="handleElementsUpdated($event)"></app-pattern>
-  </md-tab>
+    <md-tab label="Frame" *ngFor="let frame of frames; let idx = index">
+        <ng-template md-tab-label>
+          <md-icon>assistant</md-icon>
+          {{ idx }}
+        </ng-template>
+        <div style="padding: 1em 0;">
+            <md-form-field>
+                <input mdInput type="number" placeholder="Duration [ms]" [(ngModel)]="frame.duration">
+            </md-form-field>
+            <app-frame [(frame)]="frames[idx]"></app-frame>
+        </div>
+    </md-tab>
 </md-tab-group>

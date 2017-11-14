@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { VertcialSliderComponent } from './vertcial-slider.component';
+import { PatternSingleComponent } from './pattern-single.component';
 
-describe('VertcialSliderComponent', () => {
-  let component: VertcialSliderComponent;
-  let fixture: ComponentFixture<VertcialSliderComponent>;
+describe('PatternSingleComponent', () => {
+  let component: PatternSingleComponent;
+  let fixture: ComponentFixture<PatternSingleComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VertcialSliderComponent ]
+      declarations: [ PatternSingleComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VertcialSliderComponent);
+    fixture = TestBed.createComponent(PatternSingleComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

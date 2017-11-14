@@ -1,0 +1,6 @@
+<div *ngIf="pattern">
+  <button md-button (click)="save($event)">Save</button>
+  <md-slide-toggle [(ngModel)]="checked" (change)="slideChange($event)">Live view?</md-slide-toggle>
+  
+  <app-frame [(frame)]="pattern.frames[0]"></app-frame>
+</div>

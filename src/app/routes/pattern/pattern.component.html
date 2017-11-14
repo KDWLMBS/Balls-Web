@@ -1,0 +1,30 @@
+<md-expansion-panel expanded="true" hideToggle="true">
+  <md-expansion-panel-header>
+    <md-panel-title>
+      Pattern Data
+    </md-panel-title>
+    <md-panel-description>
+      Set Type, Name and other parameters
+    </md-panel-description>
+  </md-expansion-panel-header>
+
+  <md-form-field>
+    <input mdInput placeholder="Name" [(ngModel)]="data.name" required>
+  </md-form-field>
+  
+  <md-select placeholder="Pattern" [(ngModel)]="data.ptype" (change)="typeChanged($event)">
+      <md-option *ngFor="let item of pTypes" [(value)]="item.key">
+        {{ item.value }}
+      </md-option>
+    </md-select>
+
+  <md-select placeholder="Animation" [(ngModel)]="data.atype">
+    <md-option *ngFor="let item of aTypes" [(value)]="item.key">
+      {{ item.value }}
+    </md-option>
+  </md-select>
+
+  <md-action-row>
+      <button md-button color="warn" (click)="save($event)">SAVE</button>
+    </md-action-row>
+</md-expansion-panel>

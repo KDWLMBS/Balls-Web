@@ -1,1 +1,19 @@
-<app-pattern [editable]="editable" [elements]="elements" (elementsUpdated)="handleElementsUpdated($event)"></app-pattern>
+<md-form-field>
+    <input mdInput placeholder="formula" [(ngModel)]="data.formula" (change)="onChange($event)">
+</md-form-field>
+<md-form-field>
+    <input mdInput type="number" placeholder="minX" [(ngModel)]="data.minX" (change)="onScaleChange($event)">
+</md-form-field>
+<md-form-field>
+    <input mdInput type="number" placeholder="maxX" [(ngModel)]="data.maxX" (change)="onScaleChange($event)">
+</md-form-field>
+<md-form-field>
+    <input mdInput type="number" placeholder="minY" [(ngModel)]="data.minY" (change)="onScaleChange($event)">
+</md-form-field>
+<md-form-field>
+    <input mdInput type="number" placeholder="maxY" [(ngModel)]="data.maxY" (change)="onScaleChange($event)">
+</md-form-field>
+
+<div class="chart-container" style="position: relative; height:80vh; width:80vw">
+    <canvas #canvasChart></canvas>
+</div>
